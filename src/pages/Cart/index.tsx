@@ -22,14 +22,8 @@ const Cart = (): JSX.Element => {
 
   const cartFormatted = cart.map((product) => ({
     ...product,
-    priceFormatted: new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(product.price),
-    subTotal: new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(product.amount * product.price),
+    priceFormatted: formatPrice(product.price),
+    subTotal: formatPrice(product.amount * product.price),
   }));
 
   const total = formatPrice(
@@ -40,11 +34,11 @@ const Cart = (): JSX.Element => {
   );
 
   function handleProductIncrement({ id, amount }: Product) {
-    updateProductAmount({ productId: id, amount });
+    updateProductAmount({ productId: id, amount: amount + 1 });
   }
 
   function handleProductDecrement({ id, amount }: Product) {
-    updateProductAmount({ productId: id, amount });
+    updateProductAmount({ productId: id, amount: amount - 1 });
   }
 
   function handleRemoveProduct(productId: number) {
