@@ -26,7 +26,7 @@ const Home = (): JSX.Element => {
   const { addProduct, cart } = useCart();
 
   const cartItemsAmount = cart.reduce(
-    (sumAmount, product) => ({ [product.id]: product.amount }),
+    (sumAmount, product) => ({ ...sumAmount, [product.id]: product.amount }),
     {} as CartItemsAmount
   );
 
@@ -45,7 +45,7 @@ const Home = (): JSX.Element => {
   }, []);
 
   async function handleAddProduct(id: number) {
-    await addProduct(id)
+    await addProduct(id);
   }
 
   return (
