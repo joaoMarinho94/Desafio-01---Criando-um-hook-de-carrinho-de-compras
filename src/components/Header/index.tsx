@@ -1,22 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { MdShoppingBasket } from 'react-icons/md';
+import React from "react";
+import { Link } from "react-router-dom";
+import { MdShoppingBasket } from "react-icons/md";
 
-import logo from '../../assets/images/logo.svg';
-import { Container, Cart } from './styles';
-import { useCart } from '../../hooks/useCart';
+import logo from "../../assets/images/logo.svg";
+import { Container, Cart } from "./styles";
+import { useCart } from "../../hooks/useCart";
 
 const Header = (): JSX.Element => {
   const { cart } = useCart();
-  const distinctProductsId: String[] = []    
-
-  const cartSize = cart.reduce((acc, cur) => {
-    if(distinctProductsId.includes(String(cur.id))){           
-      distinctProductsId.push(String(cur.id))
-      return acc =+ 1
-    }
-    return acc
-   }, 0);
+  const cartSize = cart.length;
 
   return (
     <Container>
