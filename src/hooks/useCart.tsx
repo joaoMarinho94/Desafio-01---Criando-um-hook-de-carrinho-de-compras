@@ -77,10 +77,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         (product) => product.id === productId
       );
 
-      if (productIndex < 0) {
-        toast.error("Erro na remoção do produto");
-        return;
-      }
+      if (productIndex < 0) throw new Error();
 
       const newCart = cart.filter((product) => product.id !== productId);
 
